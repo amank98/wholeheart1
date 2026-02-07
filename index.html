@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Propose Day 💍</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+/* LOCK SCREEN */
+#lockScreen {
+  text-align: center;
+}
+
+input {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  width: 240px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 28px;
+  border: none;
+  border-radius: 25px;
+  background: #ff5f7e;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+#errorMsg {
+  margin-top: 12px;
+  color: #b00020;
+  display: none;
+}
+
+/* CARD */
+#card {
+  display: none;
+  width: 460px;
+  padding: 28px;
+  background: white;
+  border-radius: 26px;
+  text-align: center;
+  box-shadow: 0 30px 50px rgba(0,0,0,0.25);
+  animation: float 3s ease-in-out infinite;
+  z-index: 2;
+}
+
+h1 {
+  color: #ff5f7e;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* FLOATING IMAGES */
+.photo {
+  position: absolute;
+  width: 240px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  animation: float 4s ease-in-out infinite;
+}
+
+#photo1 { top: 10%; left: 8%; }
+#photo2 { bottom: 10%; right: 8%; }
+
+/* FLOAT ANIMATION */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOCK SCREEN -->
+<div id="lockScreen">
+  <input type="password" id="passwordInput" placeholder="You are my?">
+  <br>
+  <button onclick="unlock()">Unlock for surprise</button>
+  <p id="errorMsg">That’s not it… try again 💔</p>
+</div>
+
+<!-- FLOATING PHOTOS -->
+<img src="photo1.jpeg" class="photo" id="photo1" style="display:none;">
+<img src="photo2.jpeg" class="photo" id="photo2" style="display:none;">
+
+<!-- PROPOSE CARD -->
+<div id="card">
+  <h1>Happy Propose Day Baby</h1>
+  <p>
+    Loving you was never a question- 
+    it was always the answer.
+    <br><br>
+    So here I am, choosing you.
+    Today, Tomorrow, and Always.
+    <br><br>
+    Will you stay mine, forever? ❤️🫰
+  </p>
+</div>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="bgMusic" src="Finding Her.mp3" preload="auto"></audio>
+
+<script>
+function unlock() {
+  const correctPassword = "Devooh";
+  const input = document.getElementById("passwordInput").value;
+  const error = document.getElementById("errorMsg");
+  const lock = document.getElementById("lockScreen");
+  const card = document.getElementById("card");
+  const music = document.getElementById("bgMusic");
+
+  if (input === correctPassword) {
+    error.style.display = "none";
+    lock.style.display = "none";
+    card.style.display = "block";
+    document.getElementById("photo1").style.display = "block";
+    document.getElementById("photo2").style.display = "block";
+
+    music.currentTime = 0;
+    music.play().catch(() => {});
+  } else {
+    error.style.display = "block";
+    card.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
